@@ -1,0 +1,243 @@
+/* 1. Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Agar padding tidak merusak ukuran elemen */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. Styling Navbar */
+.navbar {
+    display: flex;                  /* Membuat isi navbar berjajar ke samping */
+    justify-content: space-between; /* Logo di kiri, Menu di kanan */
+    align-items: center;            /* Semua item rata tengah secara vertikal */
+    background-color: #1b4332;      /* Hijau Tua yang elegan */
+    padding: 15px 50px;             /* Jarak dalam: atas-bawah 15px, kiri-kanan 50px */
+    color: #ffb703;                 /* Warna Emas/Oranye untuk teks */
+    position: sticky;               /* Navbar tetap di atas saat di-scroll */
+    top: 0;
+    z-index: 1000;                  /* Agar navbar tidak tertutup elemen lain */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffb703;                 /* Warna Emas untuk logo */
+}
+
+/* 3. Styling Daftar Menu */
+.nav-links {
+    list-style: none;               /* Menghilangkan titik (bullet) pada list */
+    display: flex;                  /* Membuat menu berderet ke samping */
+}
+
+.nav-links li {
+    margin-left: 20px;              /* Jarak antar menu */
+}
+
+.nav-links a {
+    text-decoration: none;          /* Menghilangkan garis bawah pada link */
+    color: white;                   /* Warna teks menu putih agar kontras */
+    font-weight: 500;
+    transition: 0.3s;               /* Efek halus saat kursor menyentuh menu */
+}
+
+/* Efek saat menu diarahkan kursor (Hover) */
+.nav-links a:hover {
+    color: #ffb703;                 /* Berubah jadi emas saat disentuh */
+}
+
+/* 4. Styling Slider */
+.slider-container {
+    position: relative;         /* Agar tombol panah bisa menempel di atasnya */
+    width: 100%;
+    height: 400px;              /* Tinggi area slide */
+    overflow: hidden;           /* MENYEMBUNYIKAN slide yang sedang tidak aktif */
+    background-color: #f4f4f4;
+}
+
+.slider {
+    display: flex;              /* Membuat slide berjejer ke samping (seperti gerbong) */
+    width: 300%;                /* Karena ada 3 slide, lebarnya 3 x 100% */
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* Efek halus saat bergeser */
+}
+
+.slide {
+    width: 100%;                /* Setiap slide lebarnya memenuhi layar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #1b4332, #2d6a4f); /* Gradasi Hijau */
+    color: #ffb703;             /* Teks warna Emas */
+}
+
+/* 5. Styling Tombol Panah */
+.prev, .next {
+    position: absolute;         /* Meletakkan tombol di atas slide */
+    top: 50%;                   /* Di tengah secara vertikal */
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5); /* Hitam transparan */
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.prev { left: 10px; }           /* Posisi tombol kiri */
+.next { right: 10px; }          /* Posisi tombol kanan */
+
+.prev:hover, .next:hover {
+    background-color: #ffb703;  /* Berubah emas saat diarahkan kursor */
+    color: #1b4332;
+}
+
+/* 4. Styling Area Koleksi Buku */
+.book-slider-container {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.section-title {
+    text-align: center;
+    color: #1b4332; /* Hijau */
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
+/* Wadah Utama yang menyembunyikan scrollbar */
+.slider-wrapper {
+    position: relative;
+    max-width: 1200px; /* Lebar maksimal area buku */
+    margin: 0 auto;    /* Ketengah */
+}
+
+/* Wadah Kartu Buku (Rel untuk geser) */
+.book-slides-container {
+    display: flex;         /* Kartu buku berjejer ke samping */
+    gap: 20px;            /* Jarak antar kartu */
+    overflow-x: auto;      /* MEMBOLEHKAN geser horizontal (penting untuk mobile) */
+    scroll-behavior: smooth; /* Efek geser halus (native CSS) */
+    list-style: none;
+    padding: 20px 0;
+    scrollbar-width: none;  /* Sembunyikan scrollbar (Firefox) */
+}
+
+/* Sembunyikan scrollbar (Chrome, Safari, Edge) */
+.book-slides-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Styling Kartu Buku */
+.book-card {
+    flex: 0 0 calc(25% - 15px); /* Menampilkan 4 kartu (100%/4 - gap) */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: auto; /* Agar kartu bisa menyesuaikan tinggi gambar */
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.book-card:hover {
+    transform: translateY(-5px); /* Efek terangkat sedikit saat hover */
+}
+
+.book-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Gambar pas, tidak gepeng */
+}
+
+.book-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.book-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.book-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffb703; /* Emas */
+}
+
+/* 5. Styling Tombol Panah Modern */
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffb703; /* Emas */
+    color: #1b4332;            /* Hijau */
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.slide-arrow:hover {
+    background-color: #1b4332;
+    color: #ffb703;
+}
+
+.slide-arrow.prev { left: -25px; } /* Posisi sedikit keluar wadah */
+.slide-arrow.next { right: -25px; }
+
+/* Styling Container Informasi */
+.info-container {
+    background-color: #1b4332; /* Hijau Tua yang sama dengan Navbar */
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+    margin-top: 40px; /* Jarak dari section atasnya */
+}
+
+.content-wrapper {
+    max-width: 800px;    /* Membatasi lebar teks agar enak dibaca */
+    margin: 0 auto;       /* Membuat kotak berada di tengah */
+}
+
+.info-title {
+    color: #ffb703;      /* Warna Emas */
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.section-description {
+    line-height: 1.8;    /* Jarak antar baris kalimat */
+    font-size: 18px;
+}
+
+/* Styling Footer */
+.footer-container {
+    background-color: #081c15; /* Hijau yang lebih gelap lagi untuk footer */
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #ffb703; /* Garis pembatas warna Emas */
+}
+
+.footer-text {
+    color: #adb5bd;      /* Warna abu-abu terang agar tidak terlalu mencolok */
+    font-size: 14px;
+}
